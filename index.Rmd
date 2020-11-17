@@ -8,6 +8,16 @@ knitr::opts_chunk$set(echo = TRUE)
 source("analysis.R")
 ```
 
+## Introduction
+
+## Summary
+
+## Chart 1
+
+## Chart 2
+
+## Map
+
 ```{r, echo=FALSE}
-testing
+black_white_ratio_map
 ```
