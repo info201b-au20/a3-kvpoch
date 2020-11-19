@@ -9,6 +9,34 @@ summary_info <- list()
 summary_info$num_observations <- nrow(incarceration) # number of rows
 summary_info$num_features <- ncol(incarceration) # number of columns
 
+#Which state has the highest black/white jail ratio in 2018?
+summary_info$highest_black_white_ratio <- black_and_white_2018 %>%
+  filter(black_white_jail_ratio == max(black_white_jail_ratio, na.rm = T)) %>%
+  pull(state)
+  
+#When did Texas have the highest rate of black people in jail?
+summary_info$highest_black_texas_incarceration <- texas_data %>%
+  filter(black_jail_pop_rate == max(black_jail_pop_rate, na.rm = T))%>%
+  pull(year)
+  
+#Which state had the highest rate of latin people in jail of 2018?
+summary_info$highest_latin_incarceration <- incarceration %>%
+  filter(year == 2018) %>%
+  filter(latinx_jail_pop_rate == max(latinx_jail_pop_rate, na.rm = T)) %>%
+  pull(state)
+
+#Which state had the lowest rate of white people in jail of 2018?
+summary_info$lowest_white_incarceration <- incarceration %>%
+  filter(year == 2018) %>%
+  filter(white_jail_pop_rate == max(white_jail_pop_rate, na.rm = T)) %>%
+  pull(state)
+
+#Which state had the highest rate of Asian Americans in jail of 2018?
+summary_info$highest_latin_incarceration <- incarceration %>%
+  filter(year == 2018) %>%
+  filter(aapi_jail_pop_rate == max(aapi_jail_pop_rate, na.rm = T)) %>%
+  pull(state)
+
 # 2018 data of black and white people
 black_and_white_2018 <- incarceration %>%
   select(white_jail_pop_rate, black_jail_pop_rate, total_jail_pop_rate,
@@ -84,9 +112,12 @@ texas_data <- incarceration %>%
          year, fips, state, county_name) %>% 
   filter(state == "TX")
 
-texas_data <- texas_data %>% group_by(year)
+texas_data <- texas_data %>% group_by(year) %>% ungroup()
 
-
+black_and_white_2018 %>% filter(year == 2018) %>%
+  filter(state == "TX") %>% filter(black_white_jail_ratio == max(black_white_jail_ratio, na.rm = T)) %>% 
+  select(county_name, black_white_jail_ratio
+)
 
 
 

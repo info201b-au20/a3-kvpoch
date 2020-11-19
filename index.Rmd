@@ -8,21 +8,44 @@ knitr::opts_chunk$set(echo = TRUE)
 source("anaylsis2.R")
 ```
 ## Introduction
-United States is the most incarcerated country in the world due to the significant
-contribution of systemic racism. For example, the prison system reveals to target
-individuals of color through over-policing and the war on drugs, leading to the disproportionate incarceration of people of color. Through this assignment, I am examining the patterns of inequality
+- United States is the most incarcerated country in the world due to the significant
+contribution of systemic racism. 
+- For example, the prison system reveals to target
+individuals of color through over-policing and the war on drugs, leading to the
+disproportionate incarceration of people of color. 
+- Through this report, I am examining the patterns of inequality
 using the incarceration data collected by the [Vera Institute](https://github.com/vera-institute/incarceration-trends).
 
 ### Summary
+```{r, eval= FALSE}
+summary_info
+```
+- In 2018, Colorado had the highest black to white jail ratio.
+- In 2004, Texas had the highest rate of black people in jail. 
+- In 2018,Georgia had the highest rate of Latin Americans in jail. 
+- In 2018, Louisiana had the lowest rate of white people in jail.
+- In 2018, Georgia had the highest rate of Asian Americans in jail. 
 
 ### Trends Over Time Chart
 
 ### Black Jail Population Rates Disproportionately Higher than White Rates
+This scatter plot displays the white jail population rates on the y axis and the
+black jail population rate on the x axis. This plot reveals how states have
+disproportionate incarceration rates among black and white people. For example,
+in Campbell County, Wyoming, there is a white jail population rate of 138.22, which
+is significantly lower than their black jail population rate of 34883.72. 
+
 ```{r, echo=FALSE}
 black_white_by_state
 ```
 
-### Map
+### 2018 Texas Map of Black/White Incarceration Ratios
+This map displays the differences in black to white incarceration ratios
+by counties in Texas of 2018. There are quite of lighter blue counties, which
+have a higher black to white incarceration ratio. For example, Terrell County has
+a black to white incarceration ratio of 41.99987. 
+
 ```{r, echo=FALSE}
 blackwhite_ratio_map
 ```
+
