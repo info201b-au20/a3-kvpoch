@@ -5,19 +5,24 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-source("analysis.R")
+source("anaylsis2.R")
+```
+## Introduction
+United States is the most incarcerated country in the world due to the significant
+contribution of systemic racism. For example, the prison system reveals to target
+individuals of color through over-policing and the war on drugs, leading to the disproportionate incarceration of people of color. Through this assignment, I am examining the patterns of inequality
+using the incarceration data collected by the [Vera Institute](https://github.com/vera-institute/incarceration-trends).
+
+### Summary
+
+### Trends Over Time Chart
+
+### Black Jail Population Rates Disproportionately Higher than White Rates
+```{r, echo=FALSE}
+black_white_by_state
 ```
 
-## Introduction
-
-## Summary
-
-## Chart 1
-
-## Chart 2
-
-## Map
-
+### Map
 ```{r, echo=FALSE}
-black_white_ratio_map
+blackwhite_ratio_map
 ```

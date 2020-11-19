@@ -4,11 +4,6 @@ library(mapproj)
 library(patchwork)
 incarceration <- read.csv("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
 
-#summary
-summary_info <- list()
-summary_info$num_observations <- nrow(incarceration) # number of rows
-summary_info$num_features <- ncol(incarceration) # number of columns
-
 # 2018 data of black and white people
 black_and_white_2018 <- incarceration %>%
   select(white_jail_pop_rate, black_jail_pop_rate, total_jail_pop_rate,
@@ -34,11 +29,6 @@ map_data <- county_shapes %>%
   left_join(black_and_white_2018, by = "fips") %>%
   filter(state == "TX")
 
-# where the black/white ratio is > 1
-map_data1 <- map_data %>% 
-  mutate(black_white_jail_ratio = ifelse(black_white_jail_ratio > 1, black_white_jail_ratio, NA))
-View(map_data1)
-
 blank_theme <- theme_bw() +
   theme(
     axis.line = element_blank(),
@@ -51,45 +41,10 @@ blank_theme <- theme_bw() +
     panel.border = element_blank()
   )
 
-
-black_white_ratio_map <- ggplot(map_data1) +
+blackwhite_ratio_map <- ggplot(map_data) +
   geom_polygon(
     mapping = aes(x = long, y = lat, group = group, fill = black_white_jail_ratio)) +
   coord_map() +
-  labs(fill = "Black/White Ratio")+
   labs(title = "Black to White Jail Population Ratio in Texas") +
+  labs(fill = "Black/White Ratio") +
   blank_theme
-
-#where the black/white ratio is < 1  
-map_data2 <- map_data %>% 
-  mutate (black_white_jail_ratio = ifelse(black_white_jail_ratio < 1, black_white_jail_ratio, NA))
-View(map_data2)
-
-white_greater <- ggplot(map_data2) +
-  geom_polygon(
-    mapping = aes(x = long, y = lat, group = group, fill = black_white_jail_ratio)) +
-  blank_theme +
-  ggtitle("White incarceration rate > Black incarceration rate") +
-  coord_map() +
-  labs(fill = "Black/White Ratio")
-
-comparison_plots <- black_white_ratio_map/white_greater
-
-#Trends chart Over Time 
-
-#grab texas data 
-texas_data <- incarceration %>%
-  select(aapi_jail_pop_rate, white_jail_pop_rate, black_jail_pop_rate,
-         total_jail_pop_rate, latinx_jail_pop_rate,
-         year, fips, state, county_name) %>% 
-  filter(state == "TX")
-
-texas_data <- texas_data %>% group_by(year)
-
-
-
-
-
-
-
-
