@@ -119,8 +119,28 @@ black_and_white_2018 %>% filter(year == 2018) %>%
   select(county_name, black_white_jail_ratio
 )
 
+length(unique(texas_data$year))
 
 
+terrell_county <- texas_data %>%
+  filter(county_name == "Terrell County")
+terrell_county2 <- terrell_county[-(1:20),]
+  
 
 
+library(reshape2)
 
+meltdf <- melt(terrell_county2, id = "year", measure = c("white_jail_pop_rate",
+                                                        "latinx_jail_pop_rate"))
+
+ggplot(meltdf, aes(year, value, colour = variable)) +
+  geom_line() +
+  labs(title = "Terrell County, Texas Incarceration Rates by Race",
+       x = "year", y = "Jail Population Rate", color = "Race") +
+  scale_color_hue(labels = c("White", "Latin"))
+
+ggplot(meltdf, aes(year, value, colour = variable)) +
+  geom_line() +
+  labs(title = "Terrell County, Texas Incarceration Rates by Race",
+       x = "year", y = "Jail Population Rate", color = "Race") +
+  scale_color_hue(labels = c("White", "Latin", "Asian"))

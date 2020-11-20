@@ -14,7 +14,10 @@ contribution of systemic racism.
 individuals of color through over-policing and the war on drugs, leading to the
 disproportionate incarceration of people of color. 
 - Through this report, I am examining the patterns of inequality
-using the incarceration data collected by the [Vera Institute](https://github.com/vera-institute/incarceration-trends).
+using the incarceration data collected by the [Vera Institute](https://github.com/vera-institute/incarceration-trends). I am
+examining jail population rates by different races in different states, and
+specfically Texas. 
+
 
 ### Summary
 ```{r, eval= FALSE}
@@ -26,7 +29,6 @@ summary_info
 - In 2018, Louisiana had the lowest rate of white people in jail.
 - In 2018, Georgia had the highest rate of Asian Americans in jail. 
 
-### Trends Over Time Chart
 
 ### Black Jail Population Rates Disproportionately Higher than White Rates
 This scatter plot displays the white jail population rates on the y axis and the
@@ -39,6 +41,7 @@ is significantly lower than their black jail population rate of 34883.72.
 black_white_by_state
 ```
 
+
 ### 2018 Texas Map of Black/White Incarceration Ratios
 This map displays the differences in black to white incarceration ratios
 by counties in Texas of 2018. There are quite of lighter blue counties, which
@@ -49,3 +52,19 @@ a black to white incarceration ratio of 41.99987.
 blackwhite_ratio_map
 ```
 
+
+### Terrell County, Texas Incarceration Rates by Race Since 1990
+These plots show the comparison between incarceration rates of
+white people and minorities in Terrell County, Texas since 1990. Black
+and Latin Americans overall have about higher incarceration rates than White
+Americans. These plots reveal how there can be such vast disparity in
+incarceration rates between races in only one county. 
+```{r, echo=FALSE}
+latin_white
+```
+
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+black_white
+```

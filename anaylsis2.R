@@ -89,3 +89,35 @@ blackwhite_ratio_map <- ggplot(map_data) +
   labs(title = "2018 Black to White Jail Population Ratio in Texas") +
   labs(fill = "Black/White Ratio") +
   blank_theme
+
+#### My Trend Over Time ####
+
+#Grab one county data
+terrell_county <- texas_data %>%
+  filter(county_name == "Terrell County")
+terrell_county2 <- terrell_county[-(1:20),]
+
+library(reshape2)
+
+meltdf <- melt(terrell_county2, id = "year", measure = c("white_jail_pop_rate",
+                                                        "latinx_jail_pop_rate"))
+latin_white <- ggplot(meltdf, aes(year, value, colour = variable)) +
+  geom_line() +
+  labs(title = "Terrell County White vs. Latin Incarceration Rates",
+       x = "year", y = "Jail Population Rate", color = "Race") +
+  scale_color_hue(labels = c("White", "Latin"))
+
+meltdf2 <- melt(terrell_county2, id = "year", measure = c("white_jail_pop_rate",
+                                                        "black_jail_pop_rate"))
+
+black_white <- ggplot(meltdf2, aes(year, value, colour = variable)) +
+  geom_line() +
+  labs(title = "Terrell County White vs. Black Incarceration Rates",
+       x = "year", y = "Jail Population Rate", color = "Race") +
+  scale_color_hue(labels = c("White", "Black"))
+
+comparing_trends <- black_white / latin_white
+
+
+
+
